@@ -95,6 +95,10 @@ Remember: `docker exec` is your friend. Usually, if you want to ssh into a speci
 
 and you're done!
 
+## To Do
+
+- add support for MariaDB and not only MySQL
+
 ## Credits
 
 Many thanks to Ivan Palladino, for his great assistance about Docker.
