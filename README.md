@@ -46,8 +46,6 @@ You can find them in the `docker-compose.yml` file.
 
 **Note:** the default credentials for the database are `homestead/secret`, so you will not have to change them unless you want something different. **The only thing you will have to update is the `DB_HOST` environment variable, to `mysql` or `mariadb`.
 
-**Note:** if  you experience some problems while creating the project and the an `InvalidArgumentException` (*Project directory default/ is not empty.*) pops up, just delete it and then retry.
-
 ### Run!
 
 When you're good to go, just type
