@@ -6,7 +6,6 @@ front:
     - "9000:9000"
   links:
     - mysql:mysql
-    - mariadb:mariadb
     - mongo:mongo
     - memcached:memcached
     - redis:redis
@@ -17,16 +16,6 @@ front:
 
 mysql:
   image: mysql
-  ports:
-    - "3306:3306"
-  environment:
-    MYSQL_ROOT_PASSWORD: password
-    MYSQL_DATABASE: homestead
-    MYSQL_USER: homestead
-    MYSQL_PASSWORD: secret
-
-mariadb:
-  image: mariadb
   ports:
     - "3306:3306"
   environment:
