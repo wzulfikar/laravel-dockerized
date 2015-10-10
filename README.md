@@ -51,7 +51,11 @@ When you're good to go, just type
 
 	$ docker-compose up
 
-to build services and start everything you need. Your site will be available locally if you're using Linux, or at the Docker Machine address if you're on Mac OSX or Windows.
+to build services and start everything you need.
+
+The first time, the whole process will take some time. Go make yourself a coffee.
+
+Your site will be available at `localhost` if you're using Linux, or at the Docker Machine address if you're on Mac OSX or Windows.
 
 ## Common Laravel Operations
 
