@@ -6,6 +6,7 @@ front:
     - "9000:9000"
   links:
     - mysql:mysql
+    - mariadb:mariadb
     - mongo:mongo
     - memcached:memcached
     - redis:redis
