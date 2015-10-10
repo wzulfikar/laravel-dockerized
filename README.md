@@ -1,8 +1,12 @@
-# PHP Dockerized
+# Laravel Dockerized
+
+Laravel Dockerized is an all-in-one repository with everything you need to start developing Laravel application locally, using **docker-compose**. It's a fork of the awesome [php-dockerized by kasperisager](https://github.com/kasperisager/php-dockerized). I modified some settings and made some tweaks to let you work with a fully functional Laravel 5.1 install.
 
 PHP Dockerized gives you everything you need for developing PHP applications locally. The idea came from the need of having an OS-agnostic and virtualized alternative to the great [MNPP](https://github.com/jyr/MNPP) stack as regular LAMP stacks quite simply can't keep up with the Nginx + PHP-FPM/HHVM combo in terms of performance. I hope you'll find it as useful an addition to your dev-arsenal as I've found it!
 
-## What's inside
+## What's Inside?
+
+In the `docker-compose.yml` you will find the complete setup for the following software.
 
 * [Nginx](http://nginx.org/)
 * [MySQL](http://www.mysql.com/)
@@ -13,7 +17,11 @@ PHP Dockerized gives you everything you need for developing PHP applications loc
 * [Redis](http://redis.io/)
 * [Elasticsearch](http://www.elasticsearch.org/)
 
+In order to get this environment to work with Laravel, I did some little modifications to the `sites/default.vhost` file.
+
 ## Requirements
+
+In order to use Laravel Dockerized, you will need:
 
 * [Docker Engine](https://docs.docker.com/installation/)
 * [Docker Compose](https://docs.docker.com/compose/)
@@ -21,13 +29,65 @@ PHP Dockerized gives you everything you need for developing PHP applications loc
 
 ## Running
 
-Set up a Docker Machine and then run:
+### Select your Services
 
-```sh
-$ docker-compose up
-```
+If you don't mind about having every container, you can skip this part. Otherwise, feel free to remove every component you don't need from the `docker-compose.yml`. Obiously, don't forget to delete accordingly every removed item from the `links` array of the `front` element.
 
-That's it! You can now access your configured sites via the IP address of the Docker Machine or locally if you're running a Linux flavour and using Docker natively.
+### Installing Laravel
+
+Create your new Laravel project in the `www` folder and name it `default`.
+
+	composer create-project laravel/laravel default
+
+don't forget to edit your `.env` file, updating your services credentials. You can find them in the `docker-compose.yml` file.
+
+**Example:** the database credentials now are *root* as user and *password* as password.
+
+### Run!
+
+When you're good to go, just type
+
+	$ docker-compose up
+
+to build services and start everything you need. Your site will be available locally if you're using Linux, or at the Docker Machine address if you're on Mac OSX or Windows.
+
+## Common Laravel Operations
+
+### Use Artisan
+
+Laravel without Artisan is like a life without pizza. In order to use `artisan` on your application, you will need to type:
+
+	docker exec -it <mycontainer_name> bash
+
+where `<mycontainer_name>` is the one (associated to the `front` container) you can get when you type
+
+	docker ps
+
+in your terminal. Once in, you will have to reach the project folder, with
+
+	cd /var/www
+
+and then you will be able to use
+
+	php artisan
+
+as usual.
+
+### Connect to MySQL via CLI
+
+If you need to connect to your MySQL instance in the related container, the `exec` command remains the best choice. Just type
+
+	docker exec -it <mysqlcontainer_name> mysql -u root -p
+
+and type your password. Press enter and it's done!
+
+### Other CLI Operations
+
+Remember: `docker exec` is your friend. Usually, if you want to ssh into a specific container, all you need to do is
+
+	docker exec -it <container_name> bash
+
+and you're done!
 
 ## License
 
