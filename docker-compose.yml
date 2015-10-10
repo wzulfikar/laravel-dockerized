@@ -20,6 +20,9 @@ mysql:
     - "3306:3306"
   environment:
     MYSQL_ROOT_PASSWORD: password
+    MYSQL_DATABASE: homestead
+    MYSQL_USER: homestead
+    MYSQL_PASSWORD: secret
 
 mongo:
   image: mongo
