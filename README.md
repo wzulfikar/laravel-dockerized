@@ -10,6 +10,7 @@ In the `docker-compose.yml` you will find the complete setup for the following s
 
 * [Nginx](http://nginx.org/)
 * [MySQL](http://www.mysql.com/)
+* [MariaDB](https://mariadb.org/)
 * [MongoDB](http://www.mongodb.org/)
 * [PHP-FPM](http://php-fpm.org/)
 * [HHVM](http://www.hhvm.com/)
