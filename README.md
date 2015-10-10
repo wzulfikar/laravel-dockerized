@@ -41,7 +41,7 @@ Create your new Laravel project in the `www` folder and name it `default`.
 
 don't forget to edit your `.env` file, updating your services credentials. You can find them in the `docker-compose.yml` file.
 
-**Example:** the database credentials now are *root* as user and *password* as password.
+**Note:** the default credentials for the database are `homestead/secret`, so you will not have to change them unless you want something different.
 
 **Note:** if  you experience some problems while creating the project and the an `InvalidArgumentException` (*Project directory default/ is not empty.*) pops up, just delete it and then retry.
 
