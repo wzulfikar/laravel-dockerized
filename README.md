@@ -95,6 +95,10 @@ Remember: `docker exec` is your friend. Usually, if you want to ssh into a speci
 
 and you're done!
 
+## Credits
+
+Many thanks to Ivan Palladino, for his great assistance about Docker.
+
 ## License
 
 Copyright &copy; 2014-2015 [Kasper Kronborg Isager](http://github.com/kasperisager). Licensed under the terms of the [MIT license](LICENSE.md).
