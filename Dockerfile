@@ -13,31 +13,29 @@ RUN rm -f /etc/nginx/conf.d/*
 
 # Install packages
 RUN apt-get update && apt-get install -my \
+  nano \
+  composer \
   supervisor \
   curl \
   wget \
-  php5-curl \
-  php5-fpm \
-  php5-gd \
-  php5-memcached \
-  php5-mysql \
-  php5-mcrypt \
-  php5-sqlite \
-  php5-xdebug
+  php7.0-curl \
+  php7.0-fpm \
+  php7.0-gd \
+  php7.0-mysql \
+  php7.0-mcrypt \
+  php7.0-xdebug
 
-# Ensure that PHP5 FPM is run as root.
-RUN sed -i "s/user = www-data/user = root/" /etc/php5/fpm/pool.d/www.conf
-RUN sed -i "s/group = www-data/group = root/" /etc/php5/fpm/pool.d/www.conf
-
-# Install HHVM
-RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449
-RUN echo deb http://dl.hhvm.com/debian jessie main | tee /etc/apt/sources.list.d/hhvm.list
-RUN apt-get update && apt-get install -y hhvm
+# Ensure that PHP7 FPM is run as root.
+RUN sed -i "s/user = www-data/user = root/" /etc/php/7.0/fpm/pool.d/www.conf
+RUN sed -i "s/group = www-data/group = root/" /etc/php/7.0/fpm/pool.d/www.conf
 
 # Add configuration files
-COPY conf/nginx.conf /etc/nginx/
-COPY conf/supervisord.conf /etc/supervisor/conf.d/
-COPY conf/php.ini /etc/php5/fpm/conf.d/40-custom.ini
+RUN rm -f /etc/nginx/nginx.conf && ln -s /opt/conf/nginx.conf /etc/nginx/
+RUN rm -f /etc/supervisor/conf.d/supervisord.conf && ln -s /opt/conf/supervisord.conf /etc/supervisor/conf.d/
+RUN rm -f /etc/php/7.0/fpm/conf.d/40-custom.ini && ln -s /opt/conf/php.ini /etc/php/7.0/fpm/conf.d/40-custom.ini
+
+# Add aliases
+RUN echo 'alias artisan="php artisan"' >> ~/.bashrc
 
 ################################################################################
 # Volumes
@@ -50,6 +48,12 @@ VOLUME ["/var/www", "/etc/nginx/conf.d"]
 ################################################################################
 
 EXPOSE 80 443 9000
+
+################################################################################
+# Start phpfpm service
+################################################################################
+
+RUN service php7.0-fpm start
 
 ################################################################################
 # Entrypoint
