@@ -10,13 +10,8 @@ In the `docker-compose.yml` you will find the complete setup for the following s
 
 * [Nginx](http://nginx.org/)
 * [MySQL](http://www.mysql.com/)
-* [MariaDB](https://mariadb.org/)
-* [MongoDB](http://www.mongodb.org/)
 * [PHP-FPM](http://php-fpm.org/)
-* [HHVM](http://www.hhvm.com/)
-* [Memcached](http://memcached.org/)
 * [Redis](http://redis.io/)
-* [Elasticsearch](http://www.elasticsearch.org/)
 
 In order to get this environment to work with Laravel, I did some little modifications to the `sites/default.vhost` file.
 
