@@ -10,6 +10,7 @@ front:
     - ./www:/var/www
     - ./docker/conf:/opt/conf
     - ./docker/sites:/etc/nginx/conf.d
+    - ./docker/nginx-logs:/var/log/nginx
 
 mysql:
   image: mysql
